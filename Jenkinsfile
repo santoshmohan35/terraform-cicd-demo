@@ -13,6 +13,15 @@ pipeline {
       }
     }
 
+    stage('Terraform Init') {
+      steps {
+        sh '''
+          echo "==> Initializing Terraform backend"
+          terraform init -input=false
+        '''
+      }
+    }
+
     stage('Validate Terraform') {
       steps {
         sh '''
@@ -20,15 +29,6 @@ pipeline {
           terraform -version
           echo "==> Validating Terraform syntax"
           terraform validate
-        '''
-      }
-    }
-
-    stage('Terraform Init') {
-      steps {
-        sh '''
-          echo "==> Initializing Terraform backend"
-          terraform init -input=false
         '''
       }
     }

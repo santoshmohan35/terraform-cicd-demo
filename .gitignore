@@ -1,0 +1,55 @@
+# ========================================
+# Terraform-specific ignores
+# ========================================
+# Local .terraform directories
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Sensitive variable files
+*.tfvars
+*.tfvars.json
+
+# Lock file (should not be shared across environments)
+.terraform.lock.hcl
+
+# Plan files
+*.tfplan
+
+# ========================================
+# Jenkins & Build ignores
+# ========================================
+# Jenkins workspace and build logs
+workspace/
+builds/
+jobs/
+config.xml
+*.log
+
+# ========================================
+# General system ignores
+# ========================================
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+*.old
+*.orig
+
+# IDEs (VSCode, JetBrains, etc.)
+.vscode/
+.idea/
+*.iml
+
+# OS & user-specific
+*.pem
+*.ppk

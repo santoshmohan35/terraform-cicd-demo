@@ -1,0 +1,6 @@
+region              = "ap-south-1"
+vpc_cidr_block      = "10.10.0.0/16"
+public_subnet_cidr  = "10.10.1.0/24"
+private_subnet_cidr = "10.10.2.0/24"
+project_name        = "terraform-demo"
+key_name            = "terraform-key"

@@ -52,15 +52,19 @@ pipeline {
       }
     }
 
-    stage('Terraform Apply') {
-      steps {
+  stage('Terraform Apply') {
+    options { timeout(time: 45, unit: 'MINUTES') }
+    steps {
+      retry(2) {
+       echo "⚙️ Applying Terraform changes..."
         sh '''
-          echo "==> Applying Terraform changes"
-          terraform apply -input=false tfplan
+          # keep Jenkins log “alive” while Terraform works
+          terraform apply -input=false -auto-approve tfplan | tee apply.log
         '''
       }
     }
   }
+  
 
   post {
     success {

@@ -33,14 +33,18 @@ pipeline {
       }
     }
 
-    stage('Terraform Plan') {
-      steps {
+   stage('Terraform Plan') {
+    options { timeout(time: 30, unit: 'MINUTES') }
+    steps {
+       retry(2) {
+        echo "🧠 Running Terraform plan..."
         sh '''
-          echo "==> Running Terraform plan"
+          echo "==> Refreshing state and planning..."
           terraform plan -input=false -out=tfplan
         '''
       }
     }
+  }
 
     stage('Manual Approval') {
       steps {

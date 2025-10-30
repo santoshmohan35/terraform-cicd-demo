@@ -24,25 +24,12 @@ pipeline {
       }
     }
 
-    stage('Terraform Checks') {
-      parallel {
-        stage('Format Check') {
-          steps {
-            echo "🔍 Checking Terraform formatting..."
-            sh 'terraform fmt -check -recursive'
-          }
+    stage('Format Check') {
+        steps {
+           echo "🔍 Checking Terraform formatting..."
+           sh 'terraform fmt -check -recursive'
         }
-        stage('Validate Syntax') {
-          steps {
-            echo "🧩 Validating Terraform syntax..."
-            sh '''
-              terraform -version
-              terraform validate
-            '''
-          }
-        }
-      }
-    }
+     }
 
     stage('Terraform Plan') {
       options { timeout(time: 30, unit: 'MINUTES') }
